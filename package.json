@@ -1,0 +1,73 @@
+{
+  "name": "ig1-continue",
+  "displayName": "IG1 Continue",
+  "description": "IG1 Continue Remote Config Helper",
+  "publisher": "IG1",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iguanesolutions/ig1-continue.git"
+  },
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ig1-continue.sync",
+        "title": "IG1 Continue: Sync Config"
+      }
+    ],
+    "configuration": {
+      "title": "IG1 Continue",
+      "type": "object",
+      "properties": {
+        "ig1-continue.baseURL": {
+          "type": "string",
+          "description": "Base URL of IG1 AI Gateway.",
+          "markdownDescription": "Base URL of IG1 AI Gateway (eg: `https://gateway.demo.ig1.ai`)."
+        },
+        "ig1-continue.apiKey": {
+          "type": "string",
+          "description": "API Key for IG1 AI Gateway.",
+          "markdownDescription": "API Key for IG1 AI Gateway."
+        },
+        "ig1-continue.localAssistant": {
+          "title": "Local Assistant",
+          "type": "boolean",
+          "default": false,
+          "description": "Use local assistant.",
+          "markdownDescription": "Use local assistant. ⚠️ This will replace your current local assistant (`~/.continue/config.yaml`)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.100.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
