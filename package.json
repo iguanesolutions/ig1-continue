@@ -24,29 +24,39 @@
     "commands": [
       {
         "command": "ig1-continue.sync",
-        "title": "IG1 Continue: Sync Config"
+        "title": "IG1 Continue: Sync Configs"
       }
     ],
     "configuration": {
       "title": "IG1 Continue",
       "type": "object",
       "properties": {
-        "ig1-continue.baseURL": {
-          "type": "string",
-          "description": "Base URL of IG1 AI Gateway.",
-          "markdownDescription": "Base URL of IG1 AI Gateway (eg: `https://gateway.demo.ig1.ai`)."
-        },
-        "ig1-continue.apiKey": {
-          "type": "string",
-          "description": "API Key for IG1 AI Gateway.",
-          "markdownDescription": "API Key for IG1 AI Gateway."
-        },
-        "ig1-continue.localAssistant": {
-          "title": "Local Assistant",
-          "type": "boolean",
-          "default": false,
-          "description": "Use local assistant.",
-          "markdownDescription": "Use local assistant. ⚠️ This will replace your current local assistant (`~/.continue/config.yaml`)"
+        "ig1-continue.remoteServers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "URL of the remote server.",
+                "markdownDescription": "URL of the remote server. (eg: `https://gateway.demo.ig1.ai`)"
+              },
+              "apiKey": {
+                "type": "string",
+                "description": "API Key for the remote server.",
+                "markdownDescription": "API Key for the remote server."
+              },
+              "localAssistant": {
+                "title": "Local Assistant",
+                "type": "boolean",
+                "default": false,
+                "description": "Use local assistant.",
+                "markdownDescription": "Use local assistant. ⚠️ This will replace your current local assistant (`~/.continue/config.yaml`)"
+              }
+            }
+          },
+          "description": "List of remote servers to connect to.",
+          "markdownDescription": "List of remote servers to connect to. Each server requires a URL and an API Key."
         }
       }
     }
