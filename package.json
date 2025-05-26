@@ -31,27 +31,37 @@
       "title": "IG1 Continue",
       "type": "object",
       "properties": {
-        "ig1-continue.remoteServers": {
+        "ig1-continue.baseURL": {
+          "type": "string",
+          "description": "Base URL of IG1 AI Gateway.",
+          "markdownDescription": "Base URL of IG1 AI Gateway (eg: `https://gateway.demo.ig1.ai`)."
+        },
+        "ig1-continue.apiKey": {
+          "type": "string",
+          "description": "API Key for IG1 AI Gateway.",
+          "markdownDescription": "API Key for IG1 AI Gateway."
+        },
+        "ig1-continue.localAssistant": {
+          "title": "Local Assistant",
+          "type": "boolean",
+          "default": false,
+          "description": "Use local assistant.",
+          "markdownDescription": "Use local assistant. ⚠️ This will replace your current local assistant (`~/.continue/config.yaml`)"
+        },
+        "ig1-continue.secondaryServers": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "url": {
+              "baseURL": {
                 "type": "string",
-                "description": "URL of the remote server.",
-                "markdownDescription": "URL of the remote server. (eg: `https://gateway.demo.ig1.ai`)"
+                "description": "Base URL of the remote server.",
+                "markdownDescription": "Base URL of the remote server. (eg: `https://gateway.demo.ig1.ai`)"
               },
               "apiKey": {
                 "type": "string",
                 "description": "API Key for the remote server.",
                 "markdownDescription": "API Key for the remote server."
-              },
-              "localAssistant": {
-                "title": "Local Assistant",
-                "type": "boolean",
-                "default": false,
-                "description": "Use local assistant.",
-                "markdownDescription": "Use local assistant. ⚠️ This will replace your current local assistant (`~/.continue/config.yaml`)"
               }
             }
           },
