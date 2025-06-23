@@ -1,0 +1,35 @@
+name: Package VSCode Extension and Publish GitHub Release
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+jobs:
+  packagenrelease:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+      - name: Install vsce cli
+        run: npm install -g vsce
+      - name: Package extension
+        run: vsce package -o ig1-continue-${{ github.ref }}.vsix
+      - name: Generate Changelog
+        id: changelog
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          version: ${{ github.ref }}
+          path: ./CHANGELOG.md
+      - name: Create GitHub release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          name: ${{ github.ref }}
+          body: ${{ steps.changelog.outputs.changes }}
+          draft: false
+          prerelease: false
+          files: ./ig1-continue-${{ github.ref }}.vsix
