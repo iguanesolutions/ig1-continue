@@ -12,7 +12,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
       - name: Install vsce cli
-        run: npm install -g vsce
+        run: npm install -g @vscode/vsce
       - name: Package extension
         run: vsce package -o ig1-continue-${{ github.ref_name }}.vsix
       - name: Generate Changelog
